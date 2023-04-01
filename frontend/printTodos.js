@@ -1,3 +1,5 @@
+import todoSaveDone from "./todoSaveDone.js";
+
 let root = document.getElementById('root');
 
 export default function printTodos() {
@@ -13,6 +15,10 @@ export default function printTodos() {
             let li = document.createElement('li');
             li.innerText = task.itemName;
             li.id = task.itemId;
+
+            li.addEventListener('click', () => {
+                todoSaveDone(li.id);
+            })
 
             ul.append(li);
         })
