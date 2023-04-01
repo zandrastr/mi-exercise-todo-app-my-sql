@@ -1,1 +1,3 @@
-console.log('todo!');
+import printTodos from "./printTodos.js";
+
+printTodos();
