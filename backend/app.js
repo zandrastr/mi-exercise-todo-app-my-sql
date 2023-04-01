@@ -22,8 +22,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/users', usersRouter);
 
 app.get('/items', (req, res) => {
-    res.json({});
-    
+
+    connection.connect((err) => {
+        if (err) {
+            console.log('err:', err);
+        }
+
+        connection.query('SELECT * FROM items', (err, data) => {
+            if (err) {
+                console.log('err:', err);
+            }
+            console.log('data from query:', data);
+            res.json(data);
+        })
+    })
 })
 
 module.exports = app;
