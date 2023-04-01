@@ -4,9 +4,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cors = require('cors');
 
-// var indexRouter = require('./routes/index');
-// var usersRouter = require('./routes/users');
-
 const connection = require('./conn')
 
 var app = express();
@@ -18,9 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use('/', indexRouter);
-// app.use('/users', usersRouter);
-
+//********************* Get all todos **************************/
 app.get('/items', (req, res) => {
 
     connection.connect((err) => {
@@ -33,6 +28,27 @@ app.get('/items', (req, res) => {
                 console.log('err:', err);
             }
             console.log('data from query:', data);
+            res.json(data);
+        })
+    })
+})
+
+//********************* Create new todo *************************/
+app.post('/items', (req, res) => {
+    let newTodo = req.body;
+
+    connection.connect((err) => {
+        if (err) {
+            console.log('err:', err);
+        }
+
+        let sql = `INSERT INTO items (itemName, listId) VALUES ('${newTodo.newTodoName}', '${newTodo.newTodoList}')`;
+
+        connection.query(sql, (err, data) => {
+            if (err) {
+                console.log('err:', err);
+            }
+            console.log('saved:', data);
             res.json(data);
         })
     })
