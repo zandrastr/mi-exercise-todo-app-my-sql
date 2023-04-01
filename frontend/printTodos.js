@@ -17,6 +17,7 @@ export default function printTodos() {
             ul.append(li);
         })
 
+        root.innerHTML = '';
         root.append(ul);
     })
 }
