@@ -23,7 +23,7 @@ app.get('/items', (req, res) => {
             console.log('err:', err);
         }
 
-        connection.query('SELECT * FROM items', (err, data) => {
+        connection.query('SELECT * FROM items WHERE done = 0', (err, data) => {
             if (err) {
                 console.log('err:', err);
             }
@@ -43,6 +43,27 @@ app.post('/items', (req, res) => {
         }
 
         let sql = `INSERT INTO items (itemName, listId) VALUES ('${newTodo.newTodoName}', '${newTodo.newTodoList}')`;
+
+        connection.query(sql, (err, data) => {
+            if (err) {
+                console.log('err:', err);
+            }
+            console.log('saved:', data);
+            res.json(data);
+        })
+    })
+})
+
+//********************* Update todo as done *******************/
+app.post('/done', (req, res) => {
+    let itemDone = req.body.itemId;
+
+    connection.connect((err) => {
+        if (err) {
+            console.log('err:', err);
+        }
+
+        let sql = `UPDATE items SET done = 1 WHERE itemId = ${itemDone}`;
 
         connection.query(sql, (err, data) => {
             if (err) {
