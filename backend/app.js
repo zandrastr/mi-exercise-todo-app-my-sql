@@ -75,4 +75,22 @@ app.post('/done', (req, res) => {
     })
 })
 
+//********************* Get lists **************************/
+app.get('/lists', (req, res) => {
+
+    connection.connect((err) => {
+        if (err) {
+            console.log('err:', err);
+        }
+
+        connection.query('SELECT * FROM lists', (err, data) => {
+            if (err) {
+                console.log('err:', err);
+            }
+            console.log('lists:', data);
+            res.json(data);
+        })
+    })
+})
+
 module.exports = app;
