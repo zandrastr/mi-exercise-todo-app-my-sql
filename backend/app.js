@@ -15,15 +15,19 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//********************* Get all todos **************************/
-app.get('/items', (req, res) => {
+//********************* Get all todos from one list **************************/
+app.get('/items/:listId', (req, res) => {
+
+    let listId = req.params.listId;
 
     connection.connect((err) => {
         if (err) {
             console.log('err:', err);
         }
 
-        connection.query('SELECT * FROM items WHERE done = 0', (err, data) => {
+        let sql = `SELECT * FROM items WHERE done = 0 AND listId = ${listId}`;
+
+        connection.query(sql, (err, data) => {
             if (err) {
                 console.log('err:', err);
             }
