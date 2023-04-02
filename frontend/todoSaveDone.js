@@ -1,6 +1,6 @@
 import printTodos from "./printTodos.js";
 
-export default function todoSaveDone(id) {
+export default function todoSaveDone(id, list) {
     console.log('save as done:', id);
 
     fetch('http://localhost:3000/done/', {
@@ -13,6 +13,6 @@ export default function todoSaveDone(id) {
     .then(res => res.json())
     .then(data => {
         console.log('saved as done:', data);
-        printTodos();
+        printTodos(list);
     })
 }
