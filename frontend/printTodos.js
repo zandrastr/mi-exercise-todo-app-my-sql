@@ -23,7 +23,7 @@ export default function printTodos(list) {
 
         data.map(task => {
             let li = document.createElement('li');
-            li.innerText = task.itemName + '(' + task.listId + ')';
+            li.innerText = task.itemName;
             li.id = task.itemId;
 
             li.addEventListener('click', () => {
