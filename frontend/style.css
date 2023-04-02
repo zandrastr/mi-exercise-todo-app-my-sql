@@ -1,3 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: rgb(226, 236, 233);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: sans-serif;
+}
+
 h1 {
-    color: green;
+    margin-top: 80px;
+    margin-bottom: 30px;
+    color: rgb(33, 33, 168);
+
+}
+
+.inputForm {
+    background-color: aliceblue;
+    padding: 20px;
+    margin-bottom: 15px;
+    border: 1px solid rgb(197, 197, 197);
+    border-radius: 5px;
+}
+
+.saveTodoBtn {
+    padding: 0 10px 0 10px;
+    background-color: rgb(33, 33, 168);
+    color: azure;
+    border-radius: 5px;
 }
