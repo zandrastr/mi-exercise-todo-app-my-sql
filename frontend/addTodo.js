@@ -18,5 +18,6 @@ export default saveTodoBtn.addEventListener('click', () => {
     .then(data => {
         console.log('create item:', data);
         printTodos(listDrop.value);
+        saveTodoName.value = '';
     })
 })
